@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+
+{% block title %}
+Contact Us
+{% endblock %}
+
+{% block content %}
+
+<style>
+
+.contact-section{
+    min-height:70vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.contact-card{
+    max-width:600px;
+    width:100%;
+    border:none;
+    border-radius:12px;
+    box-shadow:0px 0px 15px rgba(0,0,0,.2);
+}
+
+</style>
+
+<section class="contact-section">
+
+<div class="card contact-card">
+
+<div class="card-body p-4">
+
+<h2 class="text-center mb-4">
+Contact Us
+</h2>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for msg in messages %}
+
+<div class="alert alert-success">
+{{msg}}
+</div>
+
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+<form action="/send_message" method="POST">
+
+<div class="mb-3">
+
+<label class="form-label">
+Name
+</label>
+
+<input
+type="text"
+class="form-control"
+name="name"
+required>
+
+</div>
+
+<div class="mb-3">
+
+<label class="form-label">
+Email
+</label>
+
+<input
+type="email"
+class="form-control"
+name="email"
+required>
+
+</div>
+
+<div class="mb-3">
+
+<label class="form-label">
+Phone Number
+</label>
+
+<input
+type="text"
+class="form-control"
+name="phone"
+required>
+
+</div>
+
+<div class="mb-3">
+
+<label class="form-label">
+Message
+</label>
+
+<textarea
+class="form-control"
+rows="5"
+name="message"
+required></textarea>
+
+</div>
+
+<div class="d-grid">
+
+<button type="submit" class="btn btn-warning">
+    Send Message
+</button>
+
+</div>
+
+</form>
+
+</div>
+
+</div>
+
+</section>
+
+{% endblock %}

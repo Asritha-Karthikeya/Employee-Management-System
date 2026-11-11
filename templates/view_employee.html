@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+
+{% block title %}
+View Employees
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="card shadow mt-4">
+
+        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+
+            <h3 class="mb-0">Employee Details</h3>
+
+            <a href="/add_employee" class="btn btn-warning">
+                + Add Employee
+            </a>
+
+        </div>
+
+        <div class="card-body">
+
+            <!-- Flash Messages -->
+
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            {% for msg in messages %}
+
+            <div class="alert alert-success alert-dismissible fade show">
+
+                {{ msg }}
+
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="alert">
+                </button>
+
+            </div>
+
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-hover text-center align-middle">
+
+                    <thead class="table-warning">
+
+                        <tr>
+
+                            <th>Employee ID</th>
+                            <th>Name</th>
+                            <th>Department</th>
+                            <th>Salary</th>
+                            <th>Phone Number</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        {% if employees %}
+
+                        {% for emp in employees %}
+
+                        <tr>
+
+                            <td>{{ emp[0] }}</td>
+                            <td>{{ emp[1] }}</td>
+                            <td>{{ emp[2] }}</td>
+                            <td>{{ emp[3] }}</td>
+                            <td>{{ emp[4] }}</td>
+
+                            <td>
+
+                                <a href="/edit_employee/{{ emp[0] }}"
+                                   class="btn btn-primary btn-sm">
+
+                                    Edit
+
+                                </a>
+
+                            </td>
+
+                            <td>
+
+                                <a href="/delete_employee/{{ emp[0] }}"
+                                   class="btn btn-danger btn-sm"
+                                   onclick="return confirm('Delete this employee?')">
+
+                                    Delete
+
+                                </a>
+
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                        {% else %}
+
+                        <tr>
+
+                            <td colspan="7">
+
+                                No Employees Found
+
+                            </td>
+
+                        </tr>
+
+                        {% endif %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

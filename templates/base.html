@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}{% endblock %}</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+
+        body{
+            background:#f3f3f3;
+            display:flex;
+            flex-direction:column;
+            min-height:100vh;
+        }
+
+        /* Amazon Navbar */
+
+        .navbar{
+            background:#131921;
+        }
+
+        .navbar-brand{
+            color:white !important;
+            font-weight:bold;
+            font-size:22px;
+        }
+
+        .nav-link{
+            color:white !important;
+            font-weight:500;
+            margin-left:10px;
+        }
+
+        .nav-link:hover{
+            color:#f3a847 !important;
+        }
+
+        .navbar-toggler{
+            border-color:white;
+        }
+
+        .navbar-toggler-icon{
+            filter:invert(1);
+        }
+
+        /* Main Content */
+
+        .main-content{
+            flex:1;
+        }
+
+        /* Footer */
+
+        footer{
+            background:#131921;
+            color:white;
+            text-align:center;
+            padding:15px;
+            margin-top:40px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<!-- Navbar -->
+
+<nav class="navbar navbar-expand-lg">
+
+<div class="container">
+
+    <!-- Logo -->
+
+    <a class="navbar-brand" href="{{ url_for('home') }}">
+
+        <img
+        src="{{ url_for('static', filename='images/Employee.jpg') }}"
+        width="45"
+        height="45"
+        class="rounded-circle me-2">
+
+        Employee Portal
+
+    </a>
+
+    <!-- Mobile Toggle -->
+
+    <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav">
+
+        <span class="navbar-toggler-icon"></span>
+
+    </button>
+
+    <!-- Navbar Links -->
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+
+        <ul class="navbar-nav">
+
+        {% if 'email' in session %}
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('dashboard') }}">
+                    Dashboard
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('add_employee_page') }}">
+                    Add Employee
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('view_employee') }}">
+                    View Employee
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('logout') }}">
+                    Logout
+                </a>
+            </li>
+
+        {% else %}
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('register_page') }}">
+                    Home
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('about') }}">
+                    About
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('contact') }}">
+                    Contact
+                </a>
+            </li>
+
+        {% endif %}
+
+        </ul>
+
+    </div>
+
+</div>
+
+</nav>
+
+<!-- Main Content -->
+
+<div class="container my-4 main-content">
+
+{% block content %}
+
+{% endblock %}
+
+</div>
+
+<!-- Footer -->
+
+<footer>
+
+<p class="mb-0">
+
+© 2026 Employee Management System |
+Developed using Python, Flask, MySQL, HTML, CSS & Bootstrap
+
+</p>
+
+</footer>
+
+<!-- Bootstrap JS -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

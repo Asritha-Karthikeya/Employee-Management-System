@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block title %}
+Login
+{% endblock %}
+
+{% block content %}
+
+<style>
+
+.login-section{
+    min-height:70vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.login-card{
+    max-width:450px;
+    width:100%;
+    border:none;
+    border-radius:12px;
+    box-shadow:0 0 15px rgba(0,0,0,0.2);
+}
+
+</style>
+
+<section class="login-section">
+
+<div class="card login-card">
+
+<div class="card-body p-4">
+
+<h2 class="text-center mb-4">Login</h2>
+
+<!-- Flash Message -->
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for msg in messages %}
+
+<div class="alert alert-danger">
+    {{ msg }}
+</div>
+
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+<form action="/login" method="POST">
+
+<div class="mb-3">
+    <label class="form-label">Email</label>
+    <input
+        type="email"
+        class="form-control"
+        name="email"
+        required>
+</div>
+
+<div class="mb-3">
+    <label class="form-label">Password</label>
+    <input
+        type="password"
+        class="form-control"
+        name="pwrd"
+        required>
+</div>
+
+<div class="d-grid">
+    <button type="submit" class="btn btn-warning">
+        Login
+    </button>
+</div>
+
+</form>
+
+<p class="text-center mt-3">
+
+New User?
+
+<a href="/">Register Here</a>
+
+</p>
+
+<p class="text-center">
+
+<a href="/forgot_password">
+Forgot Password?
+</a>
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+{% block title %}
+Register
+{% endblock %}
+
+{% block content %}
+
+<style>
+
+.register-section{
+    min-height:75vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.register-card{
+    width:100%;
+    max-width:450px;
+    border:none;
+    border-radius:12px;
+    box-shadow:0 0 15px rgba(0,0,0,0.2);
+}
+
+</style>
+
+<section class="register-section">
+
+    <div class="card register-card">
+
+        <div class="card-body p-4">
+
+            <h2 class="text-center mb-4">Register</h2>
+
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            {% for msg in messages %}
+
+            <div class="alert alert-danger">
+                {{ msg }}
+            </div>
+
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+
+            <form action="/register" method="POST">
+
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input
+                        type="email"
+                        class="form-control"
+                        name="email"
+                        placeholder="Enter Email"
+                        required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    <input
+                        type="password"
+                        class="form-control"
+                        name="pwrd"
+                        placeholder="Enter Password"
+                        required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Confirm Password</label>
+                    <input
+                        type="password"
+                        class="form-control"
+                        name="cpwrd"
+                        placeholder="Confirm Password"
+                        required>
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label">Role</label>
+
+                    <select class="form-select" name="role" required>
+
+                        <option value="">Select Role</option>
+                        <option value="Admin">Admin</option>
+                        <option value="Employee">Employee</option>
+
+                    </select>
+
+                </div>
+
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-warning btn-lg">
+                        Register
+                    </button>
+                </div>
+
+            </form>
+
+            <p class="text-center mt-4 mb-0">
+                Already have an account?
+                <a href="/login">Login</a>
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

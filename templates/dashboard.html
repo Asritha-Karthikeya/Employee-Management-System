@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block content %}
+
+<h2 class="text-center mb-4">
+    Welcome {{ username }}
+</h2>
+
+<div class="row g-3">
+
+    <div class="col-12 col-sm-6 col-lg-3">
+        <div class="card bg-warning text-dark shadow">
+            <div class="card-body text-center">
+                <h5>Total Users</h5>
+                <h2>{{ users|length }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-lg-3">
+        <div class="card bg-success text-white shadow">
+            <div class="card-body text-center">
+                <h5>Total Employees</h5>
+                <h2>{{ employees|length }}</h2>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="card shadow mt-4">
+
+    <div class="card-header bg-dark text-white">
+        Registered Users
+    </div>
+
+    <div class="card-body">
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-hover table-striped">
+
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                {% for user in users %}
+
+                <tr>
+                    <td>{{ user[0] }}</td>
+                    <td>{{ user[1] }}</td>
+                    <td>{{ user[3] }}</td>
+                </tr>
+
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

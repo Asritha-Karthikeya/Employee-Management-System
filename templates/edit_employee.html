@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+
+{% block title %}
+Edit Employee
+{% endblock %}
+
+{% block content %}
+
+<style>
+
+.edit-section{
+    min-height:75vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.edit-card{
+    width:100%;
+    max-width:550px;
+    border:none;
+    border-radius:12px;
+    box-shadow:0 0 15px rgba(0,0,0,.2);
+}
+
+</style>
+
+<section class="edit-section">
+
+<div class="card edit-card">
+
+<div class="card-body p-4">
+
+<h2 class="text-center mb-4">
+Edit Employee
+</h2>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for msg in messages %}
+
+<div class="alert alert-success">
+{{ msg }}
+</div>
+
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+<form action="/update_employee/{{ employee[0] }}" method="POST">
+
+<div class="mb-3">
+
+<label class="form-label">
+Employee ID
+</label>
+
+<input
+type="number"
+class="form-control"
+name="eid"
+value="{{ employee[0] }}"
+readonly>
+
+</div>
+
+<div class="mb-3">
+
+<label class="form-label">
+Employee Name
+</label>
+
+<input
+type="text"
+class="form-control"
+name="ename"
+value="{{ employee[1] }}"
+required>
+
+</div>
+
+<div class="mb-3">
+
+<label class="form-label">
+Department
+</label>
+
+<input
+type="text"
+class="form-control"
+name="edept"
+value="{{ employee[2] }}"
+required>
+
+</div>
+
+<div class="mb-3">
+
+<label class="form-label">
+Salary
+</label>
+
+<input
+type="number"
+class="form-control"
+name="esalary"
+value="{{ employee[3] }}"
+required>
+
+</div>
+
+<div class="mb-4">
+
+<label class="form-label">
+Phone Number
+</label>
+
+<input
+type="text"
+class="form-control"
+name="ephone"
+value="{{ employee[4] }}"
+required>
+
+</div>
+
+<div class="d-grid">
+
+<button
+type="submit"
+class="btn btn-warning btn-lg">
+
+Update Employee
+
+</button>
+
+</div>
+
+</form>
+
+<div class="text-center mt-3">
+
+<a href="/view_employee" class="btn btn-secondary">
+
+Back
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+{% endblock %}
